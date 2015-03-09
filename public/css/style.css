@@ -236,6 +236,10 @@ textarea.entering {
   overflow: scroll;
 }
 
+.title {
+  cursor: pointer;
+}
+
 .title:hover {
   background-color: #CCFFCC;
 }
@@ -244,7 +248,9 @@ textarea.entering {
   margin-top: 10px;
 }
 
-
+.checkmark {
+  margin-left: 3px;
+}
 
 /**
  * For modern browsers
