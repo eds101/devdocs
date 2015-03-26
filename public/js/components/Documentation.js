@@ -57,8 +57,15 @@ var Documentation = React.createClass({
   },
 
   renderGrandChildHTML: function(path) {
-    actions.selectGrandChild(this.state.library, this.state.child, path);
-    actions.selectMethod(libraryName, path, event.target.innerHTML);
+    if (path.indexOf('#') >= 0) {
+      var grandChildPath = path.split('#')[0];
+      var method = path.split('#')[1];
+    } else {
+      var grandChildPath = path;
+      var method = path;
+    }
+    actions.selectGrandChild(this.state.library, this.state.child, grandChildPath);
+    actions.selectMethod(libraryName, method, event.target.innerHTML);
   },
 
   render: function() {
@@ -67,16 +74,10 @@ var Documentation = React.createClass({
       var context = this;
       // grandchildnodes are created from library data retrieved from index.json
       var grandChildrenNodes = this.state.libraryData.entries.map(function(method) {
-        var path = method.path;
-        if (path.split('#')[1]) {
-          var grandChildPath = path.split('#')[1];
-        } else {
-          var grandChildPath = path;
-        }
         // if type of the method is associated with given child, add it as the node
         if (method.type === context.state.child) {
           // bind the function to take path as an argument
-          var func = context.renderGrandChildHTML.bind(null, grandChildPath);
+          var func = context.renderGrandChildHTML.bind(null, method.path);
           return (
             <div className='constructed' onClick={func}><a>{method.name}</a></div>
           );

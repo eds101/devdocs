@@ -44,7 +44,6 @@ var LibraryChild = React.createClass({
     // path will be used to make API call to grab the HTML code
     if(event.target.className.indexOf('#') >= 0){
       var path = event.target.className.split('#')[0];
-      console.log(path);
     } else {
       var path = event.target.className.split(' ')[0];
     }
