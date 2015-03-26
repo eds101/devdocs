@@ -42,7 +42,11 @@ var LibraryChild = React.createClass({
       var method = event.target.className.split(' ')[0];
     }
     // path will be used to make API call to grab the HTML code
-    var path = event.target.className;
+    if(event.target.className.indexOf('#') >= 0){
+      var path = event.target.className.split('#')[0];
+    } else {
+      var path = event.target.className.split(' ')[0];
+    }
     var childName = this.props.name;
     var libraryName = this.props.parent;
     // get the raw method name that will be passed on to make queries to the database
