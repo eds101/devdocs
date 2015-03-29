@@ -15,11 +15,13 @@ var Question = React.createClass({
   },
 
   componentDidUpdate: function() {
-    $('pre').each(function() {
-      $(this).addClass('prettyprint');
-    });
+    if(!this.state.ignored) {
+      $('pre').each(function() {
+        $(this).addClass('prettyprint');
+      });
 
-    $('.stack').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
+      $('.stack').append('<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>');
+    }
   },
 
   render: function(){
